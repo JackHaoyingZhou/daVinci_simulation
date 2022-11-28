@@ -42,6 +42,8 @@
 #     \version   1.0
 # */
 # //==============================================================================
+import sys
+sys.path.append('/home/zhyjack/ambf/build/devel/lib/python3/dist-packages')
 from surgical_robotics_challenge.simulation_manager import SimulationManager
 from surgical_robotics_challenge.ecm_arm import ECM
 from surgical_robotics_challenge.psm_arm import PSM
@@ -56,7 +58,7 @@ from surgical_robotics_challenge.utils.utilities import get_boolean_from_opt
 from surgical_robotics_challenge.utils import coordinate_frames
 import sys
 
-jpRecorder = JointPosRecorder(save_path = './task_data/geomagic_task2_2', record_size = 500)
+# jpRecorder = JointPosRecorder(save_path = './task_data/geomagic_task2_2', record_size = 500)
 
 class ControllerInterface:
     def __init__(self, leader, psm_arms, camera, save_jp=False):
@@ -142,7 +144,7 @@ if __name__ == "__main__":
     parser.add_argument('-c', action='store', dest='client_name', help='Client Name', default='geomagic_sim_teleop')
     parser.add_argument('--one', action='store', dest='run_psm_one', help='Control PSM1', default=True)
     parser.add_argument('--two', action='store', dest='run_psm_two', help='Control PSM2', default=True)
-    parser.add_argument('--three', action='store', dest='run_psm_three', help='Control PSM3', default=True)
+    parser.add_argument('--three', action='store', dest='run_psm_three', help='Control PSM3', default=False)
 
     parsed_args = parser.parse_args()
     print('Specified Arguments')
@@ -206,7 +208,7 @@ if __name__ == "__main__":
         theta_tip = -theta_base
         leader.set_base_frame(Frame(Rotation.RPY(theta_base, 0, 0), Vector(0, 0, 0)))
         leader.set_tip_frame(Frame(Rotation.RPY(theta_base + theta_tip, 0, 0), Vector(0, 0, 0)))
-        controller = ControllerInterface(leader, psm_arms, cam, parsed_args.jp_record)
+        controller = ControllerInterface(leader, psm_arms, cam)
         controllers.append(controller)
 
         rate = rospy.Rate(200)
