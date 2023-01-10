@@ -280,7 +280,7 @@ class MTM:
 
     def gripper_cb(self, msg):
         min = -1.8
-        max = 1.4
+        max = 4.2
         self.gripper_angle = msg.position[0] + min / (max - min)
         pass
 

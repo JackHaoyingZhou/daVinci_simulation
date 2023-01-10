@@ -141,7 +141,7 @@ if __name__ == "__main__":
     parser.add_argument('-c', action='store', dest='client_name', help='Client Name', default='mtm_sim_teleop')
     parser.add_argument('--one', action='store', dest='run_psm_one', help='Control PSM1', default=True)
     parser.add_argument('--two', action='store', dest='run_psm_two', help='Control PSM2', default=True)
-    parser.add_argument('--three', action='store', dest='run_psm_three', help='Control PSM3', default=True)
+    parser.add_argument('--three', action='store', dest='run_psm_three', help='Control PSM3', default=False)
     parser.add_argument('--mtm', action='store', dest='mtm_name', help='Name of MTM to Bind', default='/dvrk/MTMR/')
 
     parsed_args = parser.parse_args()
