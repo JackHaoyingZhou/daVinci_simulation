@@ -42,8 +42,6 @@
 #     \version   1.0
 # */
 # //==============================================================================
-import sys
-sys.path.append('/home/zhyjack/ambf/build/devel/lib/python3/dist-packages')
 from surgical_robotics_challenge.simulation_manager import SimulationManager
 from surgical_robotics_challenge.ecm_arm import ECM
 from surgical_robotics_challenge.psm_arm import PSM
@@ -58,11 +56,9 @@ from surgical_robotics_challenge.utils.utilities import get_boolean_from_opt
 from surgical_robotics_challenge.utils import coordinate_frames
 import sys
 
-# jpRecorder = JointPosRecorder(save_path = './task_data/geomagic_task2_2', record_size = 500)
 
 class ControllerInterface:
-    def __init__(self, leader, psm_arms, camera, save_jp=False):
-        self.save_jp = save_jp
+    def __init__(self, leader, psm_arms, camera):
         self.counter = 0
         self.leader = leader
         self.psm_arms = cycle(psm_arms)
@@ -82,7 +78,7 @@ class ControllerInterface:
         if sys.version_info[0] >= 3:
             self.active_psm = next(self.psm_arms)
         else:
-            self.active_psm = self.psm_arms.next()
+            self.active_psm = self.active_psm.next()
         print('Switching Control of Next PSM Arm: ', self.active_psm.name)
 
     def update_T_c_b(self):
@@ -103,17 +99,10 @@ class ControllerInterface:
             self.cmd_xyz = self.cmd_xyz + delta_t
             self.active_psm.T_t_b_home.p = self.cmd_xyz
 
-        self.cmd_rpy = self._T_c_b.M * self.leader.measured_cp().M * Rotation.RPY(np.pi, 0, np.pi / 2)
+        self.cmd_rpy = self._T_c_b.M * self.leader.measured_cp().M * Rotation.RPY(3.14, 0, 3.14 / 2)
         self.T_IK = Frame(self.cmd_rpy, self.cmd_xyz)
         self.active_psm.servo_cp(self.T_IK)
         self.active_psm.set_jaw_angle(self.leader.get_jaw_angle())
-        psm_joint_v = self.active_psm.get_ik_solution()
-        if self.save_jp:
-            record_list = []
-            record_list.append(self.active_psm.name)
-            record_list.append(psm_joint_v)
-            record_list.append(self.leader.get_jaw_angle())
-            jpRecorder.record(record_list)
 
     def update_visual_markers(self):
         # Move the Target Position Based on the GUI
