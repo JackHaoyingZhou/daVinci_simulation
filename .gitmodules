@@ -7,3 +7,6 @@
 [submodule "src/ambf"]
 	path = src/ambf
 	url = https://github.com/JackHaoyingZhou/ambf.git
+[submodule "src/surgical_robotics_challenge"]
+	path = src/surgical_robotics_challenge
+	url = https://github.com/JackHaoyingZhou/surgical_robotics_challenge.git
