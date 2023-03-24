@@ -1,0 +1,6 @@
+[submodule "src/razer_hydra"]
+	path = src/razer_hydra
+	url = https://github.com/JackHaoyingZhou/razer_hydra.git
+[submodule "src/ros_geomagic"]
+	path = src/ros_geomagic
+	url = https://github.com/JackHaoyingZhou/ros_geomagic.git
