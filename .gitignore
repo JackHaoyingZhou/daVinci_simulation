@@ -133,3 +133,4 @@ dmypy.json
 .DS_Store
 build/
 devel/
+.catkin_workspace
