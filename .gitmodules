@@ -1,9 +1,16 @@
+[submodule "src/razer_hydra"]
+	path = src/razer_hydra
+	url = https://github.com/JackHaoyingZhou/razer_hydra.git
+	branch = user_study
 [submodule "src/ros_geomagic"]
 	path = src/ros_geomagic
 	url = https://github.com/JackHaoyingZhou/ros_geomagic.git
+	branch = user_study
 [submodule "src/ambf"]
 	path = src/ambf
 	url = https://github.com/JackHaoyingZhou/ambf.git
+	branch = user_study
 [submodule "src/surgical_robotics_challenge"]
 	path = src/surgical_robotics_challenge
 	url = https://github.com/JackHaoyingZhou/surgical_robotics_challenge.git
+	branch = user_study
