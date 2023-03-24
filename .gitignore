@@ -135,3 +135,4 @@ build/
 devel/
 .catkin_workspace
 src/CMakeLists.txt
+src/ambf/build/
