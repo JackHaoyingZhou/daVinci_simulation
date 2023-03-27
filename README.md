@@ -13,7 +13,7 @@ git clone --recursive https://github.com/JackHaoyingZhou/daVinci_simulation.git
 ## Compile AMBF:
 
 ```bash
-cd daVinci_simulation/ambf
+cd daVinci_simulation/src/ambf
 mkdir build
 cd build
 cmake ..
